@@ -19,7 +19,7 @@ public class CommerceService {
 	List<CommerceVO> CommerList;
 	
 	/*
-	 *  IoService 클래스로 객체를 생성할때
+	 *  CommerceService 클래스로 객체를 생성할때
 	 *  호출되는 생성자를 선언
 	 *  
 	 *  이 클래스는 Text 파일을 읽어서
@@ -34,9 +34,15 @@ public class CommerceService {
 	
 	public CommerceService(String strFile ,String strFile2, String strFile3) {
 		/*
-		 * 매개변수로 받은 ioFile의 내용을
-		 * this.ioFile member 변수에 저장하여
+		 * 매개변수로 받은 strFile , strFile2 strFile3의 내용을
+		 * this.strFile
+		 * this.strFile2
+		 * this.strFile3member 변수에 저장하여
 		 * 다른 method에서 사용할 수 있도록 준비
+		 */
+		
+		/*
+		 * 매입매출정보의 list를 담을 Commerlist를 초기화한다
 		 */
 		CommerList = new ArrayList();
 		
@@ -52,6 +58,10 @@ public class CommerceService {
 		FileWriter fr;
 		PrintWriter pw;
 		
+		/*
+		 * 파일을 쓰기위한 Print준비
+		 */
+		
 		
 		
 		this.ReadFile1();
@@ -61,6 +71,13 @@ public class CommerceService {
 			fr = new FileWriter(strFile3);
 			pw = new PrintWriter(fr);
 			
+			
+			/*
+			 *  단가와 금액
+			 *  매입매출데이터의 단가가 
+			 *  거래구분이 1 이면 매입단가이고,
+			 *  거래구분이 2 이면 매출단가 이다.
+			 */
 			for(CommerceVO vo :CommerList) {
 				String strIo = "";
 				int iTotal =0;
@@ -160,7 +177,7 @@ public class CommerceService {
 				  
 				  /*
 				   * reaer 문자열을 콜론(:)으로 분리해서 
-				   * vo에 담고 list에 추가하는부분
+				   * vo에 담고 리스트에저장한다
 				   */
 				  String[] sl  = reader.split(":");
 				  
@@ -194,6 +211,9 @@ public class CommerceService {
 	
 	public void ReadFile1() {
 		
+		/*
+		 * ReadFile2 와 같은 원리
+		 */
 		FileReader fr;
 		BufferedReader br;
 		
@@ -205,14 +225,24 @@ public class CommerceService {
 			  String reader = br.readLine();
 			  if(reader == null)break;
 			  String[] sl  = reader.split(":");
+				/*
+				 * 새로운 vo를 생성 & 초기화
+				 */
 			  CommerceVO vo = new CommerceVO();
 			  
 			  
 			  vo.setStrDate(sl[0]);
 			  vo.setStrID(sl[1]);
 			  vo.setStrIO(sl[2]);
+				/*
+				 * intDan과 intSu는 int형 변수이므로 문자열을 int로 변환한다
+				 */
 			  vo.setIntDan(Integer.valueOf(sl[3]));
 			  vo.setIntSu(Integer.valueOf(sl[4]));
+				
+				/*
+				 * member변수가 setting된 vo를 CommerList에 추가
+				 */
 			  
 			  CommerList.add(vo);
 			  
