@@ -1,15 +1,31 @@
 package com.biz.commerce.vo;
 
 public class CommerceVO {
-	
-	private String strDate;
-	private String strIO;
-	private String strID;
-	private String strName;
-	private int intDan;
-	private int intSu;
+	/*
+	 *  거래일자 : 상품코드 :거래구분 : 단가: 수량  형식의
+	 *  데이터를 읽어서
+	 *  각 member 변수에 저장
+	 *  
+	 *  각 member 변수는 정보은닉과 캡슐화를 하기위해
+	 *  private으로 선언한다
+	 */
+	private String strDate; //거래일자
+	private String strIO; // 거래구분
+	private String strID; // 상품코드
+	private String strName; // 상품이름
+	private int intDan; // 상품단가
+	private int intSu; // 상품 수량
 	private int intCash;
 	private int intCash2;
+	
+	/* 
+	 *  private 으로 선언된 변수는
+	 *  외부에서 직접 접근 할 수 없으므로
+	 *  getter 와 setter 메소드를 생성해서
+	 *  변수에 값을 저장하고, 읽을 수 있도록 
+	 *  통로를 만든다.
+	 */
+	
 	public int getIntCash2() {
 		return intCash2;
 	}
