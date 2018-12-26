@@ -67,6 +67,10 @@ public class CommerceService {
 		this.ReadFile1();
 		this.ReadFile2();
 		
+		/*
+		 * 작성해놓았던 ReadFile1과 ReadFile2를 읽어온다.
+		 */
+		
 		try {
 			fr = new FileWriter(strFile3);
 			pw = new PrintWriter(fr);
